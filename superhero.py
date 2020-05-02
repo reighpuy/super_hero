@@ -1,15 +1,18 @@
 import requests
 
+# Reworked by Reighpuy
+# Daftar Superhero : https://github.com/reighpuy/super_hero/blob/master/daftar_super_hero
+
     # Superhero
-    elif cmd.startswith('superhero'):
+    elif cmd.startswith('superhero'): # SetKey = Prefix
       try:
         textt = removeCmd(text, setKey)
         texttl = textt.lower()
-        param1 = sender
+        param1 = sender # Pengirim
         reighpuy.findAndAddContactsByMid(param1) # Bot Mencari MID si pengirim
         res = '╭───「 Superhero 」'
         res += '\n├'
-        res += '\n├ Max Number of Hero : 731' # untuk lihat daftar Super hero ada di website nya.
+        res += '\n├ Max Number of Hero : 731' # untuk lihat daftar Super hero ada di file daftar_super_hero / https://github.com/reighpuy/super_hero/blob/master/daftar_super_hero.
         res += '\n├ Usage : '
         res += '\n│ • {key}Superhero search (name)'
         res += '\n│ • {key}Superhero num (no)'
@@ -20,10 +23,10 @@ import requests
         res += '\n│ • {key}Superhero connections (no)'
         res += '\n│ • {key}Superhero image (no)'
         res += '\n├'
-        res += '\n╰───「 Reighpuy @HelloWorld 」'
+        res += '\n╰───「 Reighpuy 」'
         if cmd == 'superhero':
             reighpuy.sendReplyMessage(msg_id, to, parsingRes(res).format_map(SafeDict(key=setKey.title())))
-        elif texttl.startswith('num '): # mencari dengan nomor urut sesuai daftar yang ada di website nya.
+        elif texttl.startswith('num '): # mencari dengan nomor urut sesuai daftar yang ada di https://github.com/reighpuy/super_hero/blob/master/daftar_super_hero.
             texts = textt[4:]
             textsl = texts.lower()
             r = requests.get("https://www.superheroapi.com/api.php/api_key_mu/{}".format(texts))
@@ -145,9 +148,9 @@ import requests
             isi += "\n├"
             isi += "\n├ -> Connections : "
             isi += "\n├ Group affiliation : {}".format(data["results"][0]["connections"]["group-affiliation"])
-            #isi += "\n├ Relatives : {}".format(data["results"][0]["connections"]["relatives"])
+            isi += "\n├ Relatives : {}".format(data["results"][0]["connections"]["relatives"])
             isi += "\n├"
-            isi += "\n╰───[ Reighpuy @HelloWorld ]"
+            isi += "\n╰───[ Reighpuy ]"
             reighpuy.sendReplyMessage(msg_id,to, isi)
       except:
           reighpuy.sendReplyMessage(msg_id,to, "# Gagal memuat perintah, Superehero {} Tidak ditemukan.".format(texts))
